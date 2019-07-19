@@ -1,4 +1,5 @@
 import os
+import linecache
 
 def saveLog(path, *data):
     with open(path, "a") as f:
@@ -15,6 +16,14 @@ def fileName(f, ext):
 		i = i + 1
 	f = f + str(i) + "." + ext
 	return f
+
+def phaseCheck(path):
+    num_lines = sum(1 for line in open(path))
+    lastLine = linecache.getline(path, num_lines)
+    phase = lastLine[0]
+    linecache.clearcache()
+    return phase
+
 
 if __name__ == "__main__":
     f = fileName("log", "txt")
