@@ -20,6 +20,8 @@ def fileName(f, ext):
 def phaseCheck(path):
     num_lines = sum(1 for line in open(path))
     lastLine = linecache.getline(path, num_lines)
+    if not lastLine:
+        return 0
     phase = lastLine[0]
     linecache.clearcache()
     return phase
