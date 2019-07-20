@@ -4,9 +4,12 @@ import linecache
 def saveLog(path, *data):
     with open(path, "a") as f:
         for i in range(len(data)):
-            for j in range(len(data[i])):
-                f.write(str(data[i][j]) + "\t")
-                #print(str(data[i][j]) + "\t", end="")
+            if isinstance(data[i], list):
+                for j in range(len(data[i])):
+                    f.write(str(data[i][j]) + "\t")
+                    #print(str(data[i][j]) + "\t", end="")
+            else:
+                f.write(str(data[i]) + "\t")
         f.write("\n")
         #print()
 
@@ -29,5 +32,7 @@ def phaseCheck(path):
 
 if __name__ == "__main__":
     f = fileName("log", "txt")
-    with open(f, "a") as f:
-        pass
+    a = 10.3
+    b = [30.1, 40.2]
+    c = [12]
+    saveLog("log.txt", a, b, c)
