@@ -2,16 +2,16 @@ import os
 import linecache
 
 def saveLog(path, *data):
-    with open(path, "a") as f:
-        for i in range(len(data)):
-            if isinstance(data[i], list):
-                for j in range(len(data[i])):
-                    f.write(str(data[i][j]) + "\t")
-                    #print(str(data[i][j]) + "\t", end="")
-            else:
-                f.write(str(data[i]) + "\t")
-        f.write("\n")
-        #print()
+	with open(path, "a") as f:
+		for i in range(len(data)):
+			if isinstance(data[i], list):
+				for j in range(len(data[i])):
+					f.write(str(data[i][j]) + "\t")
+					#print(str(data[i][j]) + "\t", end="")
+			else:
+				f.write(str(data[i]) + "\t")
+		f.write("\n")
+		#print()
 
 def fileName(f, ext):
 	i = 0
@@ -21,18 +21,18 @@ def fileName(f, ext):
 	return f
 
 def phaseCheck(path):
-    num_lines = sum(1 for line in open(path))
-    lastLine = linecache.getline(path, num_lines)
-    if not lastLine:
-        return 0
-    phase = lastLine[0]
-    linecache.clearcache()
-    return phase
+	num_lines = sum(1 for line in open(path))
+	lastLine = linecache.getline(path, num_lines)
+	if not lastLine:
+		return 0
+	phase = lastLine[0]
+	linecache.clearcache()
+	return phase
 
 
 if __name__ == "__main__":
-    f = fileName("log", "txt")
-    a = 10.3
-    b = [30.1, 40.2]
-    c = [12]
-    saveLog("log.txt", a, b, c)
+	f = fileName("log", "txt")
+	a = 10.3
+	b = [30.1, 40.2]
+	#saveLog("log.txt", a, b, c)
+	print(phaseCheck("log.txt"))
