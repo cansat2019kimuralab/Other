@@ -41,10 +41,12 @@ def phaseCheck(path):
 
 def positionCheck(path):
 	num_lines = sum(1 for line in open(path))
+	#print(num_lines)
 	pos = [0.0, 0.0]
 	for i in range(num_lines):
-		line = linecache.getline(path, i)
+		line = linecache.getline(path, i+1)
 		posStr = line.split("\t")
+		#print(line)
 		if(posStr[0] == "Start"):
 			pos = [posStr[1], posStr[2]]
 			break
@@ -52,4 +54,4 @@ def positionCheck(path):
 
 
 if __name__ == "__main__":
-	print(positionCheck("positionLog.txt"))
+	print(positionCheck("/home/pi/log/positionLog.txt"))
