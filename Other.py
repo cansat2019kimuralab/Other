@@ -15,9 +15,19 @@ def saveLog(path, *data):
 
 def fileName(f, ext):
 	i = 0
-	while(os.path.exists(f+str(i) + "." + ext)):
+	num = ""
+	while 1:
+		num = ""
+		if(len(str(i)) <= 4):
+			for j in range(4 - len(str(i))):
+				num = num + "0"
+			num = num + str(i)
+		else:
+			num = str(i)
+		if not(os.path.exists(f + num + "." + ext)):
+			break
 		i = i + 1
-	f = f + str(i) + "." + ext
+	f = f + num + "." + ext
 	return f
 
 def phaseCheck(path):
