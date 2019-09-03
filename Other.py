@@ -29,10 +29,17 @@ def phaseCheck(path):
 	linecache.clearcache()
 	return phase
 
+def positionCheck(path):
+	num_lines = sum(1 for line in open(path))
+	pos = [0.0, 0.0]
+	for i in range(num_lines):
+		line = linecache.getline(path, i)
+		posStr = line.split("\t")
+		if(posStr[0] == "Start"):
+			pos = [posStr[1], posStr[2]]
+			break
+	return pos
+
 
 if __name__ == "__main__":
-	f = fileName("log", "txt")
-	a = 10.3
-	b = [30.1, 40.2]
-	#saveLog("log.txt", a, b, c)
-	print(phaseCheck("log.txt"))
+	print(positionCheck("positionLog.txt"))
